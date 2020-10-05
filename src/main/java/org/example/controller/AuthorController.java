@@ -27,13 +27,6 @@ public class AuthorController {
         return dataService.findAll();
     }
 
-//    @GetMapping("/{id}")
-//    Author get(@PathVariable Long id) {
-//        Author book = authorRepository.findById(id)
-//                .orElseThrow(() -> new UserNotFoundException(id));
-//        return book;
-//    }
-
     @PostMapping(path = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public Author saveAuthor(@RequestBody Author newAuthor) {
         return authorRepository.save(newAuthor);
@@ -52,8 +45,9 @@ public class AuthorController {
     }
 
     @DeleteMapping("/{id}")
-    void deleteAuthor(@PathVariable Long id) {
+    Long deleteAuthor(@PathVariable Long id) {
         authorRepository.deleteById(id);
+        return id;
     }
 
 }
